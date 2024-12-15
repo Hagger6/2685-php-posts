@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Posts</title>
-</head>
-<body>
-    <h1>All Posts</h1>
-</body>
-</html>
+<?php
+include 'load.php';
+$qry_posts = "SELECT * FROM `pst_posts` WHERE `user_id` = '$id';";
+$res_posts = $db->query($qry_posts);
+$posts = mysqli_fetch_all($res_posts, MYSQLI_ASSOC);
+dd($posts);
