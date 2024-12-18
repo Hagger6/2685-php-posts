@@ -10,3 +10,6 @@
     <p class="text-4xl md:text-5xl font-extrabold text-gray-800 text-center leading-tight">Welcome to my home page</p>
 </body>
 </html>
+<?php
+echo "Hello, PHP Development Server!";
+?>
