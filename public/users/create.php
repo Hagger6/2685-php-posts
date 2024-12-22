@@ -11,7 +11,7 @@ $errors = $_SESSION['errors'] ?? [];
 <!DOCTYPE html>
 <html lang="en">
 
-@@ -10,75 +26,87 @@
+
 
 </head>
 
@@ -57,6 +57,7 @@ $errors = $_SESSION['errors'] ?? [];
             <label for="password_confirmation"
                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm
                 password</label>
+                <small class="text-red-500"><?= @$errors['password_confirmation_err']; ?></small>
         </div>
         <!-- First name - Last Name -->
         <div class="grid md:grid-cols-2 md:gap-6">

@@ -31,7 +31,34 @@ if ($data['email'] === '') {
     $errors['email_err'] = 'Email is not in accepted format!';
 }
 // mobile validation
-// password validation
+if ($data['mobile']===''){
+    $errors['mobile_err']='Mobile is required';
+}elseif(!preg_match('/^01[0-2,5]{1}[0-9]{8}$/', $data['mobile'])){
+    $errors['mobile_err'] = 'Mobile number is not valid!';
+}
+
+
+// Password validation
+if ($data['password'] === '' ) {
+    $errors['password_err'] = 'Password is required!';
+} elseif (strlen($data['password']) < 8) {
+    $errors['password_err'] = 'Password must be at least 8 characters long!';
+} elseif (!preg_match('/[A-Z]/', $data['password'])) {
+    $errors['password_err'] = 'Password must contain at least one uppercase letter!';
+} elseif (!preg_match('/[a-z]/', $data['password'])) {
+    $errors['password_err'] = 'Password must contain at least one lowercase letter!';
+} elseif (!preg_match('/[0-9]/', $data['password'])) {
+    $errors['password_err'] = 'Password must contain at least one number!';
+} elseif (!preg_match('/[\W_]/', $data['password'])) {
+    $errors['password_err'] = 'Password must contain at least one special character!';
+}
+if ($data['password_confirmation'] === '') {
+    $errors['password_confirmation_err'] = 'Password confirmation is required!';
+}
+elseif($data['password'] !== $data['password_confirmation']) {
+    $errors['password_confirmation_err'] = 'Passwords do not match!';
+}
+
 // dd($errors , true);
 if (count($errors) > 0) {
     // We have erros
