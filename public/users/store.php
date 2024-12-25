@@ -71,6 +71,7 @@ if (count($errors) > 0) {
 } else {
     // We do not have erros
     // Save the user to Database
+<<<<<<< HEAD
     $fullName = $data['first_name'] . ' ' . $data['last_name'];
     $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
     $query = "INSERT INTO `pst_users` (first_name, last_name, email, mobile, password) VALUES (?, ?, ?, ?, ?)";
@@ -86,4 +87,11 @@ if (count($errors) > 0) {
         exit;
     }
 
+=======
+    $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
+    $query = "INSERT INTO `pst_users` (first_name, last_name, email, mobile, password) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($query);
+    // redirect to users page
+    header('location: users.php');
+>>>>>>> origin/main
 }
