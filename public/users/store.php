@@ -70,28 +70,36 @@ if (count($errors) > 0) {
     header('location: create.php');
 } else {
     // We do not have erros
-    // Save the user to Database
-<<<<<<< HEAD
-    $fullName = $data['first_name'] . ' ' . $data['last_name'];
-    $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
-    $query = "INSERT INTO `pst_users` (first_name, last_name, email, mobile, password) VALUES (?, ?, ?, ?, ?)";
-    $stmt->bind_param("sssss", $fullName, $data['email'], $data['mobile'], $hashedPassword);
-    if ($stmt->execute()) {
-        // Redirect to the users page
-        header('location: users.php');
-        exit;
-    } else {
-        // Handle database insertion error
-        $_SESSION['error_msg'] = 'Error occurred while saving the user.';
-        header('location: create.php');
-        exit;
-    }
 
-=======
-    $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
-    $query = "INSERT INTO `pst_users` (first_name, last_name, email, mobile, password) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($query);
-    // redirect to users page
-    header('location: users.php');
->>>>>>> origin/main
+    // Save the user to Database
+
+    $name = $data['first_name'] . ' ' . $data['last_name'];
+    $email = $data['email'];
+    $mobile = $data['mobile'];
+    $password = password_hash($data['password'], PASSWORD_DEFAULT);
+    $roles = 'guest';
+
+    $timestamp = date('Y-m-d h:i:s');
+
+
+    $qry = "INSERT INTO `pst_users` 
+        (`name`, `email`, `mobile`, `password`, `roles`, `created_at`, `updated_at`) 
+        VALUES ('$name','$email','$mobile','$password','$roles','$timestamp','$timestamp')";
+
+    if ($db->query($qry)) {
+
+        // Get the id of newly created user
+        $id = $db->insert_id;
+
+        $_SESSION['success'] = 'User Created Successfully';
+
+        header("location: /user.php?id=$id");
+
+    } else {
+
+        // Save not success
+        $_SESSION['save_error'] = 'Cannot add new user!!!';
+
+        header('location: create-user.php');
+    }
 }
