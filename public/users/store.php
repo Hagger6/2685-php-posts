@@ -13,29 +13,25 @@ $errors = [];
 // first_name validation
 if ($data['first_name'] === '') {
     $errors['first_name_err'] = 'First name is required!';
-} elseif (strlen($data['first_name']) < 3) {
-    $errors['first_name_err'] = 'First name should be more than 3 letters!';
-} elseif (strlen($data['first_name']) > 15) {
-    $errors['first_name_err'] = 'First name should be less than or equals 15 letters!';
+} elseif (!preg_match('/^[A-Z][a-z]{2,14}( [A-Z][a-z]{2,14})?$/', $data['first_name'])) {
+    $errors['first_name_err'] = 'First name should be more than 3 letters and not less than 15 letters and the first letter should be capital!';
 }
 // last_name validation
 if ($data['last_name'] === '') {
     $errors['last_name_err'] = 'Last name is required!';
-} elseif (strlen($data['last_name']) < 3) {
-    $errors['last_name_err'] = 'Last name should be more than 3 letters!';
-} elseif (strlen($data['last_name']) > 15) {
-    $errors['last_name_err'] = 'Last name should be less than or equals 15 letters!';
+} elseif (!preg_match('/^[A-Z][a-z]{2,14}( [A-Z][a-z]{2,14})?$/', $data['last_name'])) {
+    $errors['last_name_err'] = 'Last name should be more than 3 letters and not less than 15 letters and the first letter should be capital!';
 }
 // email validation
 if ($data['email'] === '') {
     $errors['email_err'] = 'Email is required!';
-} elseif (filter_var($data['email'], FILTER_VALIDATE_EMAIL) === false) {
+} elseif (!preg_match('/^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,3}$/i', $data['email'])) {
     $errors['email_err'] = 'Email is not in accepted format!';
 }
 // mobile validation
 if ($data['mobile']===''){
     $errors['mobile_err']='Mobile is required';
-}elseif(!preg_match('/^01[0-2,5]{1}[0-9]{8}$/', $data['mobile'])){
+}elseif(!preg_match('/^01[0125][0-9]{8}$/', $data['mobile'])){
     $errors['mobile_err'] = 'Mobile number is not valid!';
 }
 
