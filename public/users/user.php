@@ -1,6 +1,4 @@
-<?php
-include '../../load.php';
-
+<?php require '../layout/header.php';
 // Super Global Array $_GET
 $id = $_GET['id'];
 
@@ -20,3 +18,4 @@ $posts = mysqli_fetch_all($res_posts, MYSQLI_ASSOC);
 
 dd($posts);
 dd($user->name);
+require '../layout/footer.php';

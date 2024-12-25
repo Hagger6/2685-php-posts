@@ -1,4 +1,6 @@
 <h1>Storing user.....</h1>
+
+<?php require '../layout/header.php'; ?>
 <?php 
 include '../../load.php';
 dd($_POST);
@@ -68,7 +70,8 @@ if (count($errors) > 0) {
     $_SESSION['errors'] = $errors;
     // redirect back to the create form
     header('location: create.php');
-} else {
+} 
+else {
     // We do not have erros
 
     // Save the user to Database
@@ -103,3 +106,5 @@ if (count($errors) > 0) {
         header('location: create-user.php');
     }
 }
+?>
+<?php require '../layout/footer.php'?>;

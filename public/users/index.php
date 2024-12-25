@@ -1,11 +1,5 @@
-<?php
-include '../../load.php';
+<?php require '../layout/header.php'; ?>
+ 
+<h1 class="p-4 text-center text-green-500">Welcome to My Home Page</h1>
 
-$qry = 'SELECT * FROM `pst_users` LIMIT 10;';
-$res = $db->query($qry);
-
-$users = mysqli_fetch_all($res, MYSQLI_ASSOC);
-
-foreach ($users as $user) {
-    include '../../components/users/user.php';
-}
+<?php require '../layout/footer.php'?>;
